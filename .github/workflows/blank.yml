@@ -4,7 +4,7 @@ jobs:
   new_push_job:
     runs-on: ubuntu-latest
     outputs:
-      output1: "errormessage=${{ steps.cmd.outputs.stderr }}"
+      output1: ${{ steps.cmd.outputs.stderr }}
       
     name: New push to repo
     steps:
@@ -36,7 +36,7 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": "${{needs.new_push_job.outputs.*}}"
+            "foo": "${{needs.new_push_job.outputs.output1}}"
           }
       env:
         SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
