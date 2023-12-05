@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Get Date
       id: get_date
-      run: echo "$(date)" 
+      run: echo "now=$(date)" >> $GITHUB_OUTPUT 
     - name: Send GitHub trigger payload to Slack Workflow Builder
       id: slack
       uses: slackapi/slack-github-action@v1.24.0
@@ -15,8 +15,7 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo2": "${{join(steps.date_date.outputs.*, '\n')}}",
-            "foo": "${{GITHUB_STEP_SUMMARY}}"
+            "foo": "${{join(steps.date_date.outputs.*, '\n')}}",
           }
       env:
         SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
