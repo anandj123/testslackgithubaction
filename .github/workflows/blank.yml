@@ -16,7 +16,7 @@ jobs:
           {
             "key": "value",
             "foo2": "${{join(steps.date_date.outputs.*, '\n')}}",
-            "foo": "{{ $GITHUB_STEP_SUMMARY }}"
+            "foo": "${{GITHUB_STEP_SUMMARY}}"
           }
       env:
         SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
