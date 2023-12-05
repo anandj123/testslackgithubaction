@@ -13,7 +13,7 @@ jobs:
         echo "Hello World!" 2>&1 | tee -a output.log
         ls -l nofolder 2>&1 | tee -a output.log
         exitcode="$?"
-        echo "errormessage=${{join(cat output.log,'#')}}" >> $GITHUB_OUTPUT
+        echo "errormessage=$(cat output.log | paste -s -d ":" -)" >> $GITHUB_OUTPUT
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
         
     - name: Send GitHub trigger payload to Slack Workflow Builder
