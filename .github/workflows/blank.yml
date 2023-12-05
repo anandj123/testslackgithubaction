@@ -10,7 +10,7 @@ jobs:
       run: |
         echo "now=$(date)" >> $GITHUB_OUTPUT 
         set +e
-        ls -l nofolder | tee output.txt
+        ls -l nofolder &> output.txt
         exitcode="$?"
         echo "errormessage=$(cat output.txt)" >> $GITHUB_OUTPUT
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
