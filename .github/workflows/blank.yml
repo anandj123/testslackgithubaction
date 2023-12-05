@@ -35,14 +35,15 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": "${{ env.MSG2 }}"
+            "foo": "${{ steps.set_var.outputs.MSG2 }}"
           }
     
     - name: Set the environment variable
+      id: set_var
       run: |
-        echo MSG2=${MSG//\n/|} >> $GITHUB_ENV
-        echo SLACK_WEBHOOK_URL="https://hooks.slack.com/triggers/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" >> $GITHUB_ENV
+        echo MSG2=${MSG//\n/|} >> $GIHUB_OUTPUT
       env:
         MSG: ${{needs.new_push_job.outputs.output1}}
+        SLACK_WEBHOOK_URL: "https://hooks.slack.com/triggers/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"
       
       
