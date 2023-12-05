@@ -4,7 +4,7 @@ jobs:
   new_push_job:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.cmd.outputs.stderr }}
+      output1: "errormessage=${{ steps.cmd.outputs.stderr }}"
       
     name: New push to repo
     steps:
