@@ -5,6 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     name: New push to repo
     steps:
+    - name: Read file if it exists?
+      uses: mathiasvr/command-output@v2.0.0
+      continue-on-error: true
+      id: cmd
+      with:
+        run: cat unknown.txt
+    
+    - run: echo Command succeeded
+      if: ${{ steps.cmd.outputs.stdout }}
+    
+    - run: echo Command failed
+      if: ${{ steps.cmd.outputs.stderr }}
+    
     - name: Get Date
       id: get_date
       run: |
