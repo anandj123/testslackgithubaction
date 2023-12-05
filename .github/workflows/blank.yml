@@ -10,7 +10,7 @@ jobs:
       run: |
         echo "now=$(date)" >> $GITHUB_OUTPUT 
         set +e
-        echo "err=$(ls -l nofolder)" >> $GITHUB_OUTPUT
+        echo "err=$(ls -l nofolder)" &>> $GITHUB_OUTPUT
         exitcode="$?"
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
         
