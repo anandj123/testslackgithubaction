@@ -15,7 +15,9 @@ jobs:
     - run: echo Command succeeded
       if: ${{ steps.cmd.outputs.stdout }}
     
-    - run: echo Command failed
+    - run: |
+        echo "errormessage=${{ steps.cmd.outputs.stderr }}" >> $GITHUB_OUTPUT
+        exit 2
       if: ${{ steps.cmd.outputs.stderr }}
     
     - name: Get Date
