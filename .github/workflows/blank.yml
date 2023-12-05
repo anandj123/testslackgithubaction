@@ -10,9 +10,10 @@ jobs:
       run: |
         echo "now=$(date)" >> $GITHUB_OUTPUT 
         set +e
-        ls -l nofolder 2>&1 | tee output.txt
+        echo "Hello World!" 2>&1 | tee output.log
+        ls -l nofolder 2>&1 | tee output.log
         exitcode="$?"
-        echo "errormessage=$(cat output.txt)" >> $GITHUB_OUTPUT
+        echo "errormessage=$(cat output.log)" >> $GITHUB_OUTPUT
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
         
     - name: Send GitHub trigger payload to Slack Workflow Builder
