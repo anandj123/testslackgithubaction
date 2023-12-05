@@ -3,6 +3,9 @@ on: [push]
 jobs:
   new_push_job:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.cmd.outputs.stderr }}
+      
     name: New push to repo
     steps:
     - name: Read file if it exists?
@@ -16,7 +19,6 @@ jobs:
       if: ${{ steps.cmd.outputs.stdout }}
     
     - run: |
-        echo "errormessage=${{ steps.cmd.outputs.stderr }}" >> $GITHUB_OUTPUT
         exit 2
       if: ${{ steps.cmd.outputs.stderr }}
     
