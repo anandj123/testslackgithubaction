@@ -30,7 +30,11 @@ jobs:
         exitcode="$?"
         echo "errormessage=$(cat output.log | paste -s -d ":" -)" >> $GITHUB_OUTPUT
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
-        
+  notify:
+    needs: new_push_job
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Send GitHub trigger payload to Slack Workflow Builder
       id: slack
       uses: slackapi/slack-github-action@v1.24.0
