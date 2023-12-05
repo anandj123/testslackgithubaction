@@ -36,7 +36,7 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": ${{ toJson(github) }}
+            "foo": '${{ toJson(github) }}'
           }
       env:
         MSG: ${{needs.new_push_job.outputs.output1}}
