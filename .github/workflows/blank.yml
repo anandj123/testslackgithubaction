@@ -35,7 +35,7 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": "${{ MSG2 }}"
+            "foo": "${{ env.MSG2 }}"
           }
     
     - name: Set the environment variable
