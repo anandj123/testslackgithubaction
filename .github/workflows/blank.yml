@@ -7,7 +7,13 @@ jobs:
     steps:
     - name: Get Date
       id: get_date
-      run: echo "now=$(date)" >> $GITHUB_OUTPUT 
+      run: |
+        echo "now=$(date)" >> $GITHUB_OUTPUT 
+        set +e
+        ls -l nofolder
+        exitcode="$?"
+        echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
+        exit "$exitcode"
     - name: Send GitHub trigger payload to Slack Workflow Builder
       id: slack
       uses: slackapi/slack-github-action@v1.24.0
