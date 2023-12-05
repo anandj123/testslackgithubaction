@@ -36,8 +36,10 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": "${{needs.new_push_job.outputs.output1//\n/|}}"
+            "foo": "${MSG2}"
           }
       env:
-        SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
+        MSG=${{needs.new_push_job.outputs.output1}}
+        MSG2="${MSG//\n/|}"
+        SLACK_WEBHOOK_URL: "https://hooks.slack.com/triggers/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"
       
