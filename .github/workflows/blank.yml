@@ -20,16 +20,6 @@ jobs:
         exit 2
       if: ${{ steps.cmd.outputs.stderr }}
     
-    - name: Get Date
-      id: get_date
-      run: |
-        echo "now=$(date)" >> $GITHUB_OUTPUT 
-        set +e
-        echo "Hello World!" 2>&1 | tee -a output.log
-        ls -l nofolder 2>&1 | tee -a output.log
-        exitcode="$?"
-        echo "errormessage=$(cat output.log | paste -s -d ":" -)" >> $GITHUB_OUTPUT
-        echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
   notify:
     needs: new_push_job
     if: always()
@@ -44,7 +34,7 @@ jobs:
         payload: |
           {
             "key": "value",
-            "foo": "${{join(steps.get_date.outputs.*, '\n')}}"
+            "foo": "${{join(needs.new_push_job.outputs.*, '\n')}}"
           }
       env:
         SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
